@@ -331,7 +331,7 @@ $PasswordSQL = Confidential -Info "PasswordSQL"
 
 # Checking if data introduced is correct
 $TestConnection = sqlcmd('SELECT @@version')
-if($TestConnection.Column1 -eq $null){
+if($null -eq $TestConnection.Column1){
     Write-Host "Autenticacion SQL incorrecta, eliminamos credenciales SQL, por favor, intentelo de nuevo." -ForegroundColor Green
     Remove-Item -Path ".\Confidential2.txt" -Force
     exit
@@ -413,3 +413,4 @@ $Aprobados = (sqlcmd ("SELECT COUNT (DISTINCT IdNIF) FROM dbo.Criptografia WHERE
 $Alumnos = (sqlcmd ("SELECT COUNT (DISTINCT IdNIF) FROM dbo.Criptografia")).Column1
 $Porcentaje = [math]::Round(($Aprobados * 100) / $Alumnos)
 Write-Host "El numero de alumnos aprobados es de: $Aprobados, un $Porcentaje %" -ForegroundColor Green
+Write-Host "`nEl script ha terminado, have a nice day!" -ForegroundColor DarkBlue
