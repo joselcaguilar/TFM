@@ -33,7 +33,8 @@ Import-Module SqlServer
 ##### Param #####
 param(
         [Parameter(Mandatory=$True)]
-        [string]$SQLServerFQDN
+        [string]$SQLServerFQDN,
+        [string]$Database
 )
 
 ##### Const Vars #####
@@ -80,7 +81,7 @@ function sqlcmd {
         [Parameter(Mandatory=$True)]
         [string]$query
     )
-    $ConnectionString = "Server=$SQLServerFQDN;Database=tfmjoselcaguilardb;Integrated Security=False;User ID=$UserSQL;Password=$PasswordSQL;"
+    $ConnectionString = "Server=$SQLServerFQDN;Database=$Database;Integrated Security=False;User ID=$UserSQL;Password=$PasswordSQL;"
     Invoke-Sqlcmd -ConnectionString $ConnectionString -Query $query
 }
 
