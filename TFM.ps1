@@ -27,16 +27,16 @@
   <The main script is a demo using all functions in this script.>
 #>
 
-##### External Modules #####
-Import-Module SqlServer
-
-##### Param #####
+##### Params #####
 param(
         [Parameter(Mandatory=$True)]
         [string]$SQLServerFQDN,
         [Parameter(Mandatory=$True)]
         [string]$Database
 )
+
+##### External Modules #####
+Import-Module SqlServer
 
 ##### Const Vars #####
 $ErrorActionPreference = "SilentlyContinue"
@@ -340,7 +340,7 @@ $PasswordSQL = Confidential -Info "PasswordSQL"
 # Checking if data introduced is correct
 $TestConnection = sqlcmd('SELECT @@version')
 if($null -eq $TestConnection.Column1){
-    Write-Host "Autenticacion SQL incorrecta, eliminamos credenciales SQL, por favor, intentelo de nuevo." -ForegroundColor Green
+    Write-Host "Autenticacion SQL incorrecta, eliminamos credenciales SQL, por favor, revise el firewall e intentelo de nuevo." -ForegroundColor Green
     Remove-Item -Path ".\Confidential2.txt" -Force
     exit
 }
