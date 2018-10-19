@@ -30,6 +30,12 @@
 ##### External Modules #####
 Import-Module SqlServer
 
+##### Param #####
+param(
+        [Parameter(Mandatory=$True)]
+        [string]$SQLServerFQDN
+)
+
 ##### Const Vars #####
 $ErrorActionPreference = "SilentlyContinue"
 
@@ -74,7 +80,7 @@ function sqlcmd {
         [Parameter(Mandatory=$True)]
         [string]$query
     )
-    $ConnectionString = "Server=tfmjoselcaguilar.database.windows.net;Database=tfmjoselcaguilardb;Integrated Security=False;User ID=$UserSQL;Password=$PasswordSQL;"
+    $ConnectionString = "Server=$SQLServerFQDN;Database=tfmjoselcaguilardb;Integrated Security=False;User ID=$UserSQL;Password=$PasswordSQL;"
     Invoke-Sqlcmd -ConnectionString $ConnectionString -Query $query
 }
 
