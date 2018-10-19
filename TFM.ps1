@@ -34,6 +34,7 @@ Import-Module SqlServer
 param(
         [Parameter(Mandatory=$True)]
         [string]$SQLServerFQDN,
+        [Parameter(Mandatory=$True)]
         [string]$Database
 )
 
